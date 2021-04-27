@@ -1,4 +1,4 @@
-package com.company.security.PassswordConfig;
+package com.company.security.config.password;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

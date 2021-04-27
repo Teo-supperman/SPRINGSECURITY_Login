@@ -1,7 +1,6 @@
 package com.company.service.implement;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ import com.company.converter.Role_Converter;
 import com.company.dto.Account_dto;
 import com.company.dto.Role_dto;
 import com.company.model.Account.Account;
+import com.company.model.Account.Permission;
 import com.company.model.Account.Role;
 import com.company.service.Account_Service;
 
@@ -130,11 +130,13 @@ public class Account_Service_Implement implements Account_Service {
 
 		System.out.println("Found User: " + account_dto);
 		Role role = account_dto.getRole();
-		String rolename = role.getName();
+		List<Permission> permissions= role_Service_Implement.ListPermissionOfRole(role);
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-		if (rolename != null) {
-			GrantedAuthority authority = new SimpleGrantedAuthority(rolename);
-			grantedAuthorities.add(authority);
+		if (permissions != null) {
+			for (Permission permissionName : permissions) {
+				GrantedAuthority authority = new SimpleGrantedAuthority(permissionName.getName());
+				grantedAuthorities.add(authority);
+			}
 		}
 		UserDetails userDetails = new User(account_dto.getName(),passwordEncoder.encode( account_dto.getPassword()), grantedAuthorities);
 		return userDetails;
