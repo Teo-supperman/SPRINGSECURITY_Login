@@ -40,7 +40,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		logger.info("Filter start...");
 		try {
 			logger.info("try...");
-			
 			AccountAuthReq autheticationRequest = new ObjectMapper().readValue(request.getInputStream(), AccountAuthReq.class);
 			Authentication authentication = new UsernamePasswordAuthenticationToken(autheticationRequest.getUsername(),
 					autheticationRequest.getPassword());

@@ -1,15 +1,15 @@
 package com.company.security.config.JWT;
 
 public class AccountAuthReq {
-	private String username;
+	private String username1;
 	private String password;
 
 	public String getUsername() {
-		return username;
+		return username1;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.username1 = username;
 	}
 
 	public String getPassword() {
